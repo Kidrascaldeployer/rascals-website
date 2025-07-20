@@ -20,61 +20,19 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Header */
+/* Header Layout */
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   position: relative;
 }
 
-.logo-left {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
-
-.logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #a733ff, #e600ff);
-  padding: 6px;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.logo:hover {
-  transform: scale(1.15);
-  background: linear-gradient(135deg, #d400ff, #6e00ff);
-}
-
-.header-socials {
-  position: absolute;
-  top: 1rem;
-  left: 60px;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.social-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #a733ff, #e600ff);
-  padding: 6px;
-  transition: transform 0.3s, background 0.3s;
-}
-
-.social-img:hover {
-  transform: scale(1.15);
-  background: linear-gradient(135deg, #d400ff, #6e00ff);
-}
-
 .mint-center {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +66,28 @@ header {
 
 .mint-button:hover {
   transform: scale(1.05);
+  background: linear-gradient(135deg, #d400ff, #6e00ff);
+}
+
+/* Social Icons Right */
+.header-socials-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.social-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a733ff, #e600ff);
+  padding: 6px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.social-img:hover {
+  transform: scale(1.15);
   background: linear-gradient(135deg, #d400ff, #6e00ff);
 }
 
@@ -238,7 +218,7 @@ footer {
   transform: scale(1.05);
 }
 
-/* Fade-in Effect */
+/* Fade-in Animation */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -250,33 +230,20 @@ footer {
   transform: translateY(0);
 }
 
-/* Responsive Design */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
-  .logo-left, .header-socials {
-    position: static;
-    margin-bottom: 1rem;
+  .header-socials-right {
+    margin-top: 1rem;
     justify-content: center;
-  }
-
-  .logo {
-    width: 32px;
-    height: 32px;
-  }
-
-  .mint-center {
-    gap: 0.5rem;
   }
 
   .mint-timer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.3rem;
     font-size: 1rem;
   }
 
@@ -292,8 +259,6 @@ footer {
   .sticky-nav {
     flex-direction: column;
     gap: 0.7rem;
-    position: sticky;
-    top: 0;
   }
 
   .hero {
@@ -332,6 +297,7 @@ footer {
   }
 }
 
+/* Optional Footer SVG Hover */
 .social-icon svg {
   background: #bc24fd;
   border-radius: 50%;
