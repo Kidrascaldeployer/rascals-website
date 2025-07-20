@@ -307,3 +307,12 @@ footer {
   transform: scale(1.15);
   background: linear-gradient(135deg, #9816f4, #5d00cc);
 }
+
+#bio .preview-card {
+  width: 400px; /* Increased width */
+}
+
+#bio .preview-card img {
+  height: auto;
+  width: 100%;
+}
