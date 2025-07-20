@@ -22,22 +22,19 @@ body {
 
 /* Header Layout */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  position: relative;
+  text-align: center;
   padding: 1rem 2rem;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-  position: relative;
 }
 
 .mint-center {
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   gap: 0.5rem;
+  margin: 0 auto;
 }
 
 .mint-timer {
@@ -71,10 +68,11 @@ header {
 
 /* Social Icons Right */
 .header-socials-right {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
   display: flex;
-  align-items: center;
   gap: 0.8rem;
-  margin-top: 0.5rem;
 }
 
 .social-img {
