@@ -1,114 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rascals NFT Project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rascals — Artwork & Collectibles on ApeChain</title>
+  <meta name="description" content="Rascals is a character-driven Web3 brand on ApeChain. Explore high-quality artwork, lore, and collaborations. Buy on Magic Eden." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Rascals — Artwork & Collectibles on ApeChain" />
+  <meta property="og:description" content="Character-driven Web3 brand. View artwork in full size and buy on Magic Eden." />
+  <meta property="og:image" content="images/og-cover.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header>
+<a class="skip-link" href="#artwork">Skip to artwork</a>
+
+<header id="site-header">
   <div class="mint-center">
-    <img src="images/apechain RASCALS.png" alt="Apechain Rascals" class="header-image">
-    <div class="mint-timer">
-      <span id="timer-days">00</span>d :
-      <span id="timer-hours">00</span>h :
-      <span id="timer-minutes">00</span>m :
-      <span id="timer-seconds">00</span>s
-    </div>
-    <a href="https://app.blever.xyz/drops/rascals" target="_blank" class="mint-button">MINTING ON BLEVER</a>
+    <img src="images/apechain RASCALS.png" alt="Apechain Rascals" class="header-image" />
+    <a href="https://magiceden.io/collections/apechain/0xb79ac18ac5aaf7ccfee2834ac7932c31e2a92e46"
+       target="_blank" rel="noopener"
+       class="mint-button">BUY ON MAGIC EDEN</a>
   </div>
 
- <div class="header-socials-right">
-  <a href="https://twitter.com/rascalsonape" target="_blank" aria-label="Twitter">
-    <img src="images/X_logo_2023_original.svg" alt="Twitter Logo" class="social-img">
-  </a>
-  <a href="https://magiceden.io/collections/apechain/0xb79ac18ac5aaf7ccfee2834ac7932c31e2a92e46" target="_blank" aria-label="Magic Eden">
-    <img src="images/Magic-Eden-Symbol-PNG.png" alt="Magic Eden Logo" class="social-img">
-  </a>
-  <a href="https://discord.gg/p4mBkPbn" target="_blank" aria-label="Discord">
-    <img src="images/discord-logo.svg" alt="Discord Logo" class="social-img">
-  </a>
-</div>
+  <div class="header-socials-right">
+    <a href="https://twitter.com/rascalsonape" target="_blank" rel="noopener" aria-label="Twitter">
+      <img src="images/X_logo_2023_original.svg" alt="Twitter" class="social-img" />
+    </a>
+    <a href="https://magiceden.io/collections/apechain/0xb79ac18ac5aaf7ccfee2834ac7932c31e2a92e46" target="_blank" rel="noopener" aria-label="Magic Eden">
+      <img src="images/Magic-Eden-Symbol-PNG.png" alt="Magic Eden" class="social-img" />
+    </a>
+    <a href="https://discord.gg/ThrGyfeJbE" target="_blank" rel="noopener" aria-label="Discord">
+      <img src="images/discord-logo.svg" alt="Discord" class="social-img" />
+    </a>
+  </div>
 </header>
 
-<!-- Sticky navigation -->
-<div class="sticky-nav">
-  <a href="#about" class="nav-button">About</a>
+<nav class="sticky-nav" aria-label="Primary">
+  <a href="#artwork" class="nav-button">Artwork Rascals</a>
   <a href="#previews" class="nav-button">Previews</a>
   <a href="#bio" class="nav-button">About The Creator</a>
   <a href="#collaborations" class="nav-button">Brand Collaborations</a>
-</div>
+</nav>
 
 <section class="hero fade-in">
   <h1>Welcome to Rascals</h1>
   <p>Unique digital characters for the future of decentralized culture.</p>
-  <img src="images/1600 x 900 Mint banner.png" alt="Main Banner" class="main-banner">
+  <img src="images/1500 x 1000.png" alt="Main Banner" class="main-banner is-original" width="1500" height="1000" />
 </section>
 
-<section id="about" class="section fade-in">
-  <h2>PROJECT RASCALS</h2>
+<section id="artwork" class="section fade-in">
+  <h2>ARTWORK RASCALS</h2>
   <p>Creating a web3 world for Rascals</p>
-  
-  <img src="images/roadmap.png" alt="About Rascals" class="about-image">
+
+  <div class="gallery-grid" id="rascals-gallery">
+    <figure class="gallery-item"><img src="images/roadmap.png" data-full="images/roadmap.png" alt="Rascals artwork — Roadmap" /></figure>
+    <figure class="gallery-item"><img src="images/UNREVEALED.png" data-full="images/UNREVEALED.png" alt="Rascals artwork — Unrevealed" /></figure>
+    <figure class="gallery-item"><img src="images/1edit.png" data-full="images/1edit.png" alt="Rascals artwork — Edit 1" /></figure>
+    <figure class="gallery-item"><img src="images/greenwizardball.png" data-full="images/greenwizardball.png" alt="Rascals artwork — Green Wizard" /></figure>
+    <figure class="gallery-item"><img src="images/SHIPKEEPER.png" data-full="images/SHIPKEEPER.png" alt="Rascals artwork — Shipkeeper (collaboration piece)" /></figure>
+    <figure class="gallery-item"><img src="images/strangerthings pose22withgrain.png" data-full="images/strangerthings pose22withgrain.png" alt="Rascals artwork — Pose with grain" /></figure>
+    <figure class="gallery-item"><img src="images/edit123.png" data-full="images/edit123.png" alt="Rascals artwork — Edit 123" /></figure>
+    <figure class="gallery-item"><img src="images/RASCALS STARTING NOW.png" data-full="images/RASCALS STARTING NOW.png" alt="Rascals artwork — Starting Now" /></figure>
+    <figure class="gallery-item"><img src="images/RASCALS APECHAIN.png" data-full="images/RASCALS APECHAIN.png" alt="Rascals artwork — ApeChain Emblem" /></figure>
+  </div>
 </section>
 
 <section id="previews" class="section fade-in">
   <h2>Collection Previews</h2>
   <div class="previews">
-    <div class="preview-card"><img src="images/RASCALSPRVW477880.png" alt=""><p>Bold and vibrant style.</p></div>
-    <div class="preview-card"><img src="images/RASCALSPRVW477866.png" alt=""><p>Futuristic tech and gold themes.</p></div>
-    <div class="preview-card"><img src="images/RASCALSPRVW477875.png" alt=""><p>Playful and colorful vibes.</p></div>
-    <div class="preview-card"><img src="images/2528.webp" alt=""><p>Retro arcade vibes.</p></div>
-    <div class="preview-card"><img src="images/RASCALSPRVW477865.png" alt=""><p>Devil with a colorful twist.</p></div>
-    <div class="preview-card"><img src="images/1728.webp" alt=""><p>Street-style culture mix.</p></div>
+    <div class="preview-card"><img src="images/RASCALSPRVW477880.png" alt="Preview vibrant style"><p>Bold and vibrant style.</p></div>
+    <div class="preview-card"><img src="images/RASCALSPRVW477866.png" alt="Preview gold tech"><p>Futuristic tech and gold themes.</p></div>
+    <div class="preview-card"><img src="images/RASCALSPRVW477875.png" alt="Preview playful"><p>Playful and colorful vibes.</p></div>
+    <div class="preview-card"><img src="images/2528.webp" alt="Preview retro arcade"><p>Retro arcade vibes.</p></div>
+    <div class="preview-card"><img src="images/RASCALSPRVW477865.png" alt="Preview devil colorful"><p>Devil with a colorful twist.</p></div>
+    <div class="preview-card"><img src="images/1728.webp" alt="Preview street style"><p>Street-style culture mix.</p></div>
   </div>
 </section>
 
 <section id="bio" class="section fade-in">
   <h2>About The Creator</h2>
-
   <p><strong>What began as a passion for art and character design evolved into the creation of a full IP brand.</strong></p>
-
-  <p>From merch drops and limited-edition "#redacted" to immersive campaigns and digital storytelling, <strong>Rascals is more than a project it's an ecosystem.</strong></p>
-
-  <p>Every product is a piece of a larger puzzle: a creative playground where community, lore, and design meet.</p>
-
-  <p><strong>Each collectible tells a story.</strong><br>
-     <strong>Each character adds depth to the universe.</strong><br>
-     <strong>Each collaboration is an opportunity to expand the world.</strong>
-  </p>
-
+  <p>From merch drops and immersive campaigns to digital storytelling, <strong>Rascals is more than a project—it's an ecosystem.</strong></p>
   <div class="previews">
-    <div class="preview-card">
-      <img src="images/kidrascal.jpg" alt="Kid Rascal Style">
-      <p>Kid Rascal.</p>
-    </div>
+    <div class="preview-card"><img src="images/kidrascal.jpg" alt="Kid Rascal portrait"><p>Kid Rascal.</p></div>
   </div>
 </section>
 
 <section id="collaborations" class="section fade-in">
   <h2>Brand Collaborations</h2>
   <div class="previews">
-    <div class="preview-card"><img src="images/2267.webp" alt=""><p>Collab with TOKENGATORS</p></div>
-    <div class="preview-card"><img src="images/2978.webp" alt=""><p>Collab with NOT A CULT</p></div>
+    <div class="preview-card"><img src="images/2267.webp" alt="Collab with TOKENGATORS"><p>Collab with TOKENGATORS</p></div>
+    <div class="preview-card"><img src="images/2978.webp" alt="Collab with NOT A CULT"><p>Collab with NOT A CULT</p></div>
   </div>
 </section>
 
 <footer>
   <p>© 2025 Rascals. All rights reserved.</p>
 </footer>
-<script src="app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-<script>
-  VanillaTilt.init(document.querySelector(".main-banner"), {
-    max: 8,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2
-  });
-</script>
+
+<!-- Back to top -->
+<button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
