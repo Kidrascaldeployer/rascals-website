@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rascals Editor</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="editor">
+    <img id="background" src="/assets/background1/mintislivetemplate.png" alt="Background">
+    <canvas id="previewCanvas" width="1000" height="1000"></canvas>
+  </div>
+
+  <div class="controls">
+    <input type="number" id="nftNumberInput" placeholder="NFT #" min="1">
+<button id="loadNFTButton">Load NFT</button>
+    <input type="file" id="uploadInput" accept="image/*">
+    <select id="backgroundSelect">
+      <option value="/assets/background1/mintislivetemplate.png">Background 1</option>
+      <option value="/assets/background2/background2.png">Background 2</option>
+    </select>
+    <button id="zoomInButton">Zoom In</button>
+    <button id="zoomOutButton">Zoom Out</button>
+    <button id="downloadButton">Download Image</button>
+    <button id="savePresetButton">Save Preset</button>
+  </div>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>

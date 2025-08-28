@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rascals Studio — Clean UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sticky Top header (brand only) -->
+  <header class="site-header is-sticky" id="siteHeader">
+    <div class="wrap header-inner">
+      <div class="brand-wrap">
+        <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Backdrop for mobile drawer -->
+  <div id="backdrop" class="backdrop" hidden></div>
+
+  <main class="wrap app">
+    <!-- Sidebar (mobile drawer) -->
+    <aside class="panel sidebar" id="sidebar" aria-label="Controls">
+      <!-- Logo (replaces Main Token card) -->
+      <div class="card logo-card">
+        <img src="assets/logorascals/logo2.png" alt="Rascals logo" />
+      </div>
+
+      <!-- Background (toggle + picker) -->
+      <details class="card acc" open>
+        <summary class="acc-head">
+          <h2 class="card-title">BACKGROUND</h2>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="acc-body">
+          <label class="switch-row">
+            <span>Custom Background</span>
+            <label class="switch">
+              <input id="useCustomBg" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </label>
+
+          <!-- No Background toggle -->
+          <label class="switch-row">
+            <span>No Background</span>
+            <label class="switch">
+              <input id="noBgToggle" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </label>
+
+          <div id="customBgRow" class="row mt-8">
+            <select id="customBgSelect" class="select"></select>
+          </div>
+          <p class="hint">
+            Toggle OFF = NFT Background layer. Toggle ON = choose from your custom backgrounds.  
+            Or enable <b>No Background</b> to show only the character.
+          </p>
+        </div>
+      </details>
+
+      <!-- GM CUP -->
+      <details class="card acc">
+        <summary class="acc-head">
+          <h2 class="card-title">GM COFFEE CUP</h2>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="acc-body">
+          <label class="switch-row">
+            <span>On / Off</span>
+            <label class="switch">
+              <input id="gmcupsToggle" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </label>
+        </div>
+      </details>
+
+      <!-- TRAITS -->
+      <details class="card acc">
+        <summary class="acc-head">
+          <h2 class="card-title">TRAITS</h2>
+          <span class="chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="acc-body">
+          <div id="traits" class="traits"></div>
+        </div>
+      </details>
+    </aside>
+
+    <!-- Stage -->
+    <section class="panel stage">
+      <div class="out-card" id="outputCard">
+        <div class="out-head">
+          <!-- Kept for JS compatibility but hidden via CSS -->
+          <div class="out-meta">
+            <div class="out-name" id="outName">Square</div>
+            <div class="out-size" id="outSize">1080 × 1080</div>
+            <div class="out-bg" id="outBg">NFT Background</div>
+          </div>
+
+          <!-- Format tabs (top-right of Output) -->
+          <nav class="nav-tabs tight" id="stageTabs" role="tablist" aria-label="Output format">
+            <button class="nav-tab active" data-view="square"     role="tab" aria-selected="true">Square</button>
+            <button class="nav-tab"        data-view="phonesaver" role="tab" aria-selected="false">Phone</button>
+            <button class="nav-tab"        data-view="raid"       role="tab" aria-selected="false">Raid</button>
+          </nav>
+        </div>
+
+        <!-- Preview container -->
+        <div class="out-canvas" id="outCanvasWrap">
+          <div id="canvasSkeleton" class="skeleton" aria-hidden="true"></div>
+          <canvas id="mainCanvas"></canvas>
+          <img id="previewImg" alt="" hidden />
+        </div>
+
+        <!-- Token controls under the preview -->
+        <div class="row mt-8 token-row" id="tokenRow">
+          <button id="prevBtnBelow" class="btn icon" aria-label="Previous token">←</button>
+          <input id="tokenInputBelow" type="number" min="1" class="input token-input" />
+          <button id="nextBtnBelow" class="btn icon" aria-label="Next token">→</button>
+        </div>
+
+        <!-- Shuffle Token -->
+        <div class="row mt-8" id="shuffleRow">
+          <button id="shuffleBtn" class="btn">Shuffle Token</button>
+        </div>
+
+        <!-- Background navigation (← label →) -->
+        <div class="row mt-8" id="bgNavRow">
+          <button id="bgPrevBtn" class="btn icon" aria-label="Previous background">←</button>
+          <span id="bgLabel" class="btn" style="pointer-events:none; text-align:center; font-weight:600;">Background</span>
+          <button id="bgNextBtn" class="btn icon" aria-label="Next background">→</button>
+        </div>
+
+        <!-- Shuffle Background -->
+        <div class="row mt-8" id="shuffleBgRow">
+          <button id="shuffleBgBtn" class="btn">Shuffle Background</button>
+        </div>
+
+        <!-- Download -->
+        <div class="row mt-8" id="downloadRow">
+          <button id="downloadSingleBtn" class="btn primary">Download</button>
+        </div>
+
+        <!-- Mini history gallery -->
+        <div class="history-gallery" id="historyGallery"></div>
+
+        <!-- Build status moved BELOW gallery -->
+        <div id="statusBar" class="status small" aria-live="polite">Idle…</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer credits + Easter egg -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>Powered by Rascals ✨</span>
+      <button class="egg" id="eggBtn" title="Don't click the eye">👁️</button>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
