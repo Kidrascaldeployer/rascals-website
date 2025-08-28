@@ -21,6 +21,9 @@
 
 *{ box-sizing:border-box }
 html{ scroll-behavior:smooth; }
+/* keep production identical to live viewer */
+html, body { max-width:100%; overflow-x:hidden; }
+
 body{
   font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--fg-0);
@@ -30,7 +33,9 @@ body{
     linear-gradient(180deg, var(--bg-1), var(--bg-0));
 }
 
-.wrap{ max-width:min(var(--hard-max),var(--max)); margin-inline:auto; padding:0 var(--space-3) }
+.wrap{ max-width:min(var(--hard-max),var(--max)); margin-inline:auto; padding:0 var(--space-3); overflow:hidden }
+.section{ overflow:hidden } /* clip inner visuals */
+
 .row{ display:flex; gap:.8rem; align-items:center }
 .mt-12{ margin-top:.75rem } .mt-16{ margin-top:1rem }
 .muted{ color:var(--fg-1) }
@@ -102,8 +107,8 @@ body{
 /* Hero chips */
 .chip{ padding:.25rem .6rem; border-radius:999px; border:1px solid rgba(255,255,255,.15); opacity:.9; font-weight:600 }
 
-/* -------- Rascals Edits grid (refined to match glass aesthetic) -------- */
-.grid.gallery{ display:grid; gap:1.25rem; grid-template-columns:repeat(4,minmax(0,1fr)) }
+/* -------- Rascals Edits grid -------- */
+.grid.gallery{ display:grid; gap:1.25rem; grid-template-columns:repeat(4,minmax(0,1fr)); overflow:hidden }
 .card-media{
   position:relative;
   padding:.5rem;
@@ -111,7 +116,7 @@ body{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.10);
   box-shadow:var(--shadow-1);
-  overflow:hidden;
+  overflow:hidden; /* important */
   transition:transform .18s ease, box-shadow .18s ease;
   cursor:zoom-in;
 }
@@ -119,34 +124,26 @@ body{
 .card-media::before{
   content:"";
   position:absolute; inset:0; border-radius:inherit; padding:1.5px;
-  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
-  opacity:.35; pointer-events:none;
-
-  /* WebKit */
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b)); opacity:.35; pointer-events:none;
   -webkit-mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
-  -webkit-mask-origin: content-box, border-box;
-  -webkit-mask-clip:   content-box, border-box;
-  -webkit-mask-composite: xor;
-  /* Standard */
+  -webkit-mask-origin: content-box, border-box; -webkit-mask-clip: content-box, border-box; -webkit-mask-composite: xor;
   mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
-  mask-origin: content-box, border-box;
-  mask-clip:   content-box, border-box;
-  mask-composite: exclude;
+  mask-origin: content-box, border-box; mask-clip: content-box, border-box; mask-composite: exclude;
 }
-.card-media img{
-  width:100%; aspect-ratio:1/1; object-fit:cover; display:block;
-  border-radius:18px;
-}
-
-/* Removed trait chips under images */
-.card-traits{ display:none !important; }
+.card-media img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:18px }
 
 /* Carousel */
-.carousel{ position:relative; padding:.75rem }
-.car-track{ display:flex; gap:.75rem; overflow:hidden; padding:.25rem }
+.carousel{ position:relative; padding:.75rem; overflow:hidden } /* clip container */
+.car-track{
+  display:flex; gap:.75rem; overflow:hidden; padding:.25rem;
+  /* softly fade edges so off-screen slides never show */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
 .car-track img{
-  width:min(68vw,420px); aspect-ratio:1/1; object-fit:cover; border-radius:12px; flex:0 0 auto; cursor:zoom-in;
-  transition: opacity .35s ease;
+  width:min(68vw,420px); aspect-ratio:1/1; object-fit:cover;
+  border-radius:12px; flex:0 0 auto; cursor:zoom-in;
+  transition: opacity .35s ease; display:block
 }
 .car-track img.is-swapping{ opacity:0; }
 .car-btn{ position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:999px; border:1px solid var(--glass-stroke); background:rgba(0,0,0,.35); backdrop-filter:blur(10px); cursor:pointer }
@@ -240,3 +237,6 @@ body.no-scroll{ overflow:hidden }
 
 /* Animation */
 @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+/* Image safety */
+img{ max-width:100%; height:auto; display:block }

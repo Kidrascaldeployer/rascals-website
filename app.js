@@ -18,7 +18,7 @@ window.addEventListener('scroll', ()=>{
     ?.classList.toggle('scrolled', window.scrollY > 8);
 });
 
-// --------------- Reveal-on-scroll micro animations ---------------
+// --------------- Reveal-on-scroll ---------------
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!prefersReduced){
   const io = new IntersectionObserver((entries)=>{
@@ -55,7 +55,7 @@ if (!prefersReduced){
   });
 })();
 
-/* --------------------- Lightbox (site-wide images) --------------------- */
+/* --------------------- Lightbox --------------------- */
 (function(){
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightboxImg');
@@ -174,7 +174,7 @@ function showToast(msg){
 
 /* -----------------------------------------------------------
    Community Highlights — local WEBP (images/metadata/{id}.webp)
-   + Autoplay progress bar
+   + Autoplay progress bar + edge clipping (handled in CSS)
 ----------------------------------------------------------- */
 function uniqueRandomInts(count, min, max, exclude = new Set()){
   const set = new Set();
@@ -402,7 +402,7 @@ function uniqueRandomInts(count, min, max, exclude = new Set()){
   loadRandomHighlights();
 })();
 
-// ===== Color-shifting particles background =====
+// ===== Subtle starfield background =====
 (function () {
   const canvas = document.getElementById("bgCanvas");
   if (!canvas) return;
@@ -410,57 +410,43 @@ function uniqueRandomInts(count, min, max, exclude = new Set()){
   const ctx = canvas.getContext("2d", { alpha: true });
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  let w = 0, h = 0, particles = [];
+  let w = 0, h = 0, stars = [];
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
-  const DENSITY = 12000, SPEED = 0.35;
-  const HUE_DRIFT_MIN = 0.05, HUE_DRIFT_MAX = 0.35;
-  const SIZE_MIN = 0.8, SIZE_MAX = 2.2;
-  const SHADOW_BLUR = 8;
-
   function resize() {
-    w = canvas.width = Math.floor(window.innerWidth * DPR);
+    w = canvas.width  = Math.floor(window.innerWidth  * DPR);
     h = canvas.height = Math.floor(window.innerHeight * DPR);
-    canvas.style.width = "100vw"; canvas.style.height = "100vh";
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(DPR, DPR);
+    canvas.style.width = "100vw";
+    canvas.style.height = "100vh";
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(DPR, DPR);
 
     const cssW = w / DPR, cssH = h / DPR;
-    const targetCount = Math.min(220, Math.max(60, Math.floor((cssW * cssH) / DENSITY)));
-    particles = [];
-    for (let i = 0; i < targetCount; i++) particles.push(makeParticle(cssW, cssH));
+    const count = Math.min(180, Math.max(80, Math.floor(cssW * cssH / 16000)));
+    stars = Array.from({length: count}, () => ({
+      x: Math.random() * cssW,
+      y: Math.random() * cssH,
+      r: Math.random() * 1.3 + 0.2,
+      a: Math.random() * 0.35 + 0.35,
+      tw: Math.random() * 0.03 + 0.01
+    }));
   }
-  function rand(a, b) { return a + Math.random() * (b - a); }
-  function makeParticle(cssW, cssH) {
-    const speed = rand(0.4, 1.0) * SPEED;
-    return { x: Math.random()*cssW, y: Math.random()*cssH, vx:(Math.random()-0.5)*speed, vy:(Math.random()-0.5)*speed,
-      r: rand(SIZE_MIN, SIZE_MAX), h: rand(180, 320), drift: rand(HUE_DRIFT_MIN, HUE_DRIFT_MAX),
-      s: rand(70, 95), l: rand(55, 70), a: rand(0.45, 0.75) };
-  }
-  let mx = 0.5, my = 0.5;
-  window.addEventListener("pointermove", (e) => {
-    const cx = e.clientX / window.innerWidth; const cy = e.clientY / window.innerHeight;
-    mx += (cx - mx) * 0.06; my += (cy - my) * 0.06;
-  });
 
-  function step() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.globalCompositeOperation = "lighter";
-    for (const p of particles) {
-      p.h = (p.h + p.drift) % 720;
-      const pvx = p.vx + (mx - 0.5) * 0.06; const pvy = p.vy + (my - 0.5) * 0.06;
-      p.x += pvx; p.y += pvy;
-      const W = canvas.width / DPR, H = canvas.height / DPR;
-      if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
-      if (p.y < -10) p.y = H + 10; if (p.y > H + 10) p.y = -10;
-      const color = `hsla(${p.h.toFixed(1)} ${p.s}% ${p.l}% / ${p.a})`;
-      ctx.shadowBlur = SHADOW_BLUR; ctx.shadowColor = color; ctx.fillStyle = color;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#fff";
+    for (const s of stars) {
+      const alpha = s.a + Math.sin(performance.now()*s.tw) * 0.15;
+      ctx.globalAlpha = Math.max(0.05, Math.min(0.9, alpha));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
     }
-    ctx.globalCompositeOperation = "source-over";
-    if (!reduced) requestAnimationFrame(step);
+    ctx.globalAlpha = 1;
+    if (!reduced) requestAnimationFrame(draw);
   }
 
   window.addEventListener("resize", resize);
   resize();
-  if (!reduced) requestAnimationFrame(step);
+  if (!reduced) requestAnimationFrame(draw);
 })();

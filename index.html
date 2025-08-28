@@ -9,7 +9,8 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <!-- cache-bust so production fetches the new CSS -->
+  <link rel="stylesheet" href="styles.css?v=fix-bleed-1" />
 </head>
 <body>
   <canvas id="bgCanvas" aria-hidden="true"></canvas>
@@ -46,7 +47,6 @@
         <p class="muted">
           Rascals is a playful Web3 IP born on ApeChain. More than just art, Rascals are a movement of playful characters that you can collect, trade, and remix. Built for creators, powered by community, and designed to evolve, Rascals blur the line between digital collectibles and creative tools. This is the next wave of culture on ApeChain, fun, and made to last.
         </p>
-
         <div class="row mt-12 hero-chips">
           <span class="chip">Studio</span>
           <span class="chip">Create</span>
@@ -77,7 +77,7 @@
 
   <!-- COLLECTION -->
   <section id="work" class="section wrap reveal-on-scroll" data-reveal="up">
-    <h2 class="section-title">Artwork</h2>
+    <h2 class="section-title">Rascals Edits</h2>
     <p class="section-lead muted">
       Evolving art across NFTs, edits, and collaborations shaping the Rascals universe on ApeChain.
     </p>
@@ -203,6 +203,7 @@
   <div id="toast" class="toast" aria-live="polite"></div>
   <button id="toTop" class="seg-pill to-top" aria-label="Back to top">↑ Top</button>
 
-  <script src="app.js" defer></script>
+  <!-- cache-bust so production fetches the new JS -->
+  <script src="app.js?v=fix-bleed-1" defer></script>
 </body>
 </html>
