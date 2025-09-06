@@ -58,10 +58,13 @@ const CUSTOM_BG = {
     {label:'Color Blue/White',    file:'phone4.png'}
   ],
   raid: [
-    {label:'UNITED AS ONE',       file:'raid1.png'},
-    {label:'BUY HOLD BELIEVE',    file:'raid2.png'},
+    {label:'WELCOME TO THE APECHAIN',       file:'raid1.png'},
+    {label:'JOIN THE RASCALS',    file:'raid2.png'},
     {label:'GET YOUR GRAILS NOW', file:'raid3.png'},
-    {label:'SEE NOTHING YET',     file:'raid4.png'}
+    {label:'YOU AINT SEEN NOTHING YET',     file:'raid4.png'},
+    {label:'BUY HOLD BELIEVE',     file:'raid5.png'},
+    {label:'UNITED AS ONE',     file:'raid6.png'}
+
   ]
 };
 

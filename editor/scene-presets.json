@@ -14,8 +14,10 @@
 
     "raid/*":                { "scale": 0.55,  "offsetX": -400, "offsetY": 0 },
     "raid/raid1.png":        { "scale": 0.55,  "offsetX": -400, "offsetY": 0 },
-    "raid/raid2.png":        { "scale": 0.55,  "offsetX": -400, "offsetY": 0 },
+    "raid/raid2.png":        { "scale": 0.55,  "offsetX": -450, "offsetY": 0 },
     "raid/raid3.png":        { "scale": 0.55,  "offsetX": -400, "offsetY": 0 },
-    "raid/raid4.png":        { "scale": 0.5,  "offsetX": -500, "offsetY": 0 }
+    "raid/raid4.png":        { "scale": 0.5,  "offsetX": -500, "offsetY": 0 },
+    "raid/raid5.png":        { "scale": 0.55,  "offsetX": -400, "offsetY": 0 },
+    "raid/raid6.png":        { "scale": 0.55,  "offsetX": -400, "offsetY": 0 }
   }
 }
