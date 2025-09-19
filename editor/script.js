@@ -49,7 +49,8 @@ const CUSTOM_BG = {
     {label:'Rascals on Apechain', file:'square1.png'},
     {label:'Apechain Rascals',    file:'square2.png'},
     {label:'Want to play a game', file:'square3.png'},
-    {label:'To the moon',         file:'square4.png'}
+    {label:'To the moon',         file:'square4.png'},
+    {label:'RocSol Background',   file:'square5.png'}
   ],
   phonesaver: [
     {label:'Color Brown/White',   file:'phone1.png'},

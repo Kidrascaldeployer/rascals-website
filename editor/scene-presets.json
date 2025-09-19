@@ -5,6 +5,7 @@
     "square/square2.png":    { "scale": 0.75, "offsetX": 0,  "offsetY": 0 },
     "square/square3.png":    { "scale": 0.80, "offsetX": 0,  "offsetY": 0 },
     "square/square4.png":    { "scale": 0.75, "offsetX": 0,  "offsetY": 0 },
+    "square/square5.png":    { "scale": 1.0, "offsetX": 0,  "offsetY": 0 },
 
     "phonesaver/*":          { "scale": 0.5,  "offsetX": 0,  "offsetY": 0 },
     "phonesaver/phone1.png": { "scale": 0.5,  "offsetX": 0,  "offsetY": 0 },
