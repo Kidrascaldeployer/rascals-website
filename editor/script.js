@@ -285,7 +285,7 @@ function addToHistory(snapshot) {
 }
 
 /* ---------- persistent state ---------- */
-const LSKEY = 'rascals-editor-state-v26';
+const LSKEY = 'rascals-editor-state-v27';
 
 const Persist = {
   read() {
