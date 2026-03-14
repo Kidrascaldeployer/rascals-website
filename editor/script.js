@@ -21,7 +21,8 @@ const FORMAT_BASELINE = {
 const LOCK_SCALE_FORMATS = new Set(['phonesaver']);
 
 /* ---------- IMPORTANT ----------
-   MOUTHS render BEFORE EXTRA in normal mode
+   Keep ORIGINAL editor metadata keys,
+   but map them to your NEW folder names.
 --------------------------------- */
 const LAYER_ORDER = [
   { key:'BACKGROUND', folder:'Background' },
@@ -45,7 +46,7 @@ const CUSTOM_BG = {
     {label:'RocSol Background',   file:'square5.png'},
     {label:'Paradise Pixel',      file:'square6.png'},
     {label:'Moon Pixel',          file:'square7.png'},
-  ],
+ ],
   phonesaver: [
     {label:'Color Brown/White',   file:'phone1.png'},
     {label:'Color Dark/Yellow',   file:'phone2.png'},
@@ -155,6 +156,17 @@ function getTraitValue(values, layerKey) {
 /* ---------- history gallery ---------- */
 const HISTORY_MAX = 6;
 
+function updatePreviewRatio() {
+  const box = $('outCanvasWrap');
+  if (!box) return;
+
+  box.classList.remove('preview-square', 'preview-phone', 'preview-raid');
+
+  if (State.format === 'square') box.classList.add('preview-square');
+  if (State.format === 'phonesaver') box.classList.add('preview-phone');
+  if (State.format === 'raid') box.classList.add('preview-raid');
+}
+
 function setActiveTabUI(fmtKey) {
   els('#stageTabs .nav-tab').forEach(b => {
     const active = b.getAttribute('data-view') === fmtKey;
@@ -162,6 +174,7 @@ function setActiveTabUI(fmtKey) {
     b.setAttribute('aria-selected', active ? 'true' : 'false');
   });
   document.body.setAttribute('data-fmt', fmtKey);
+  updatePreviewRatio();
   populateCustomSelect();
   updateBgLabel();
 }
@@ -571,6 +584,7 @@ function wireTabs() {
       });
 
       document.body.setAttribute('data-fmt', State.format);
+      updatePreviewRatio();
       populateCustomSelect();
       updateOutMeta();
       updateBgLabel();
@@ -921,14 +935,14 @@ async function renderSceneCore(ctx, width, height, fmtKey, records) {
   const p = getPreset(values, fmtKey, customFile);
   const scale = coverScale * (p.scale || 1);
 
-  const oneOfOneVal = getTraitValue(values, 'ONE OF ONE');
-  const hasOneOfOne = !!(oneOfOneVal && oneOfOneVal !== 'None');
-  const useShadowCloak = State.shadowCloak && !hasOneOfOne;
-
   ctx.save();
   ctx.translate(width / 2 + (p.offsetX || 0), height + (p.offsetY || 0));
   ctx.scale(scale, scale);
   ctx.translate(-baseSize / 2, -baseSize);
+
+  const oneOfOneVal = getTraitValue(values, 'ONE OF ONE');
+  const hasOneOfOne = !!(oneOfOneVal && oneOfOneVal !== 'None');
+  const useShadowCloak = State.shadowCloak && !hasOneOfOne;
 
   if (useShadowCloak) {
     const bodyVal = getTraitValue(values, 'BODY');
@@ -1164,6 +1178,7 @@ function showCanvasLoader(on = true) {
   });
 
   document.body.setAttribute('data-fmt', State.format);
+  updatePreviewRatio();
 
   populateCustomSelect();
   updateOutMeta();
@@ -1173,6 +1188,7 @@ function showCanvasLoader(on = true) {
   if ($('useCustomBg')) $('useCustomBg').checked = (State.backgroundMode === 'custom');
   if ($('noBgToggle')) $('noBgToggle').checked = (State.backgroundMode === 'none');
   if ($('gmcupsToggle')) $('gmcupsToggle').checked = State.gmCups;
+  if ($('pixelatedToggle')) $('pixelatedToggle').checked = State.pixelated;
   if ($('shadowCloakToggle')) $('shadowCloakToggle').checked = State.shadowCloak;
   if ($('tokenInputBelow')) $('tokenInputBelow').value = State.tokens[0] || 1;
 
