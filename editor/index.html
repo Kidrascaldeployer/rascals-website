@@ -24,18 +24,19 @@
   <main class="wrap app">
     <!-- Sidebar (mobile drawer) -->
     <aside class="panel sidebar" id="sidebar" aria-label="Controls">
-      <!-- Logo (replaces Main Token card) -->
+      <!-- Logo -->
       <div class="card logo-card">
         <img src="assets/logorascals/logo2.png" alt="Rascals logo" />
       </div>
 
-      <!-- Background (toggle + picker) -->
+      <!-- BACKGROUND -->
       <details class="card acc" open>
         <summary class="acc-head">
           <h2 class="card-title">BACKGROUND</h2>
           <span class="chev" aria-hidden="true">▾</span>
         </summary>
         <div class="acc-body">
+          <!-- Custom vs NFT -->
           <label class="switch-row">
             <span>Custom Background</span>
             <label class="switch">
@@ -44,7 +45,16 @@
             </label>
           </label>
 
-          <!-- No Background toggle -->
+          <!-- GM Coffee Cup -->
+          <label class="switch-row">
+            <span>GM Coffee Cup</span>
+            <label class="switch">
+              <input id="gmcupsToggle" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </label>
+
+          <!-- No Background -->
           <label class="switch-row">
             <span>No Background</span>
             <label class="switch">
@@ -53,30 +63,28 @@
             </label>
           </label>
 
-          <div id="customBgRow" class="row mt-8">
-            <select id="customBgSelect" class="select"></select>
-          </div>
-          <p class="hint">
-            Toggle OFF = NFT Background layer. Toggle ON = choose from your custom backgrounds.  
-            Or enable <b>No Background</b> to show only the character.
-          </p>
-        </div>
-      </details>
-
-      <!-- GM CUP -->
-      <details class="card acc">
-        <summary class="acc-head">
-          <h2 class="card-title">GM COFFEE CUP</h2>
-          <span class="chev" aria-hidden="true">▾</span>
-        </summary>
-        <div class="acc-body">
+          <!-- Pixelated -->
           <label class="switch-row">
-            <span>On / Off</span>
+            <span>Pixelated</span>
             <label class="switch">
-              <input id="gmcupsToggle" type="checkbox" />
+              <input id="pixelatedToggle" type="checkbox" />
               <span class="slider"></span>
             </label>
           </label>
+
+          <!-- Shadow Cloak -->
+          <label class="switch-row">
+            <span>Shadow Cloak</span>
+            <label class="switch">
+              <input id="shadowCloakToggle" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </label>
+
+          <p class="hint">
+            Toggle OFF = NFT Background layer. Toggle ON = choose via the Background control under the preview.
+            Or enable <b>No Background</b> to show only the character.
+          </p>
         </div>
       </details>
 
@@ -103,11 +111,11 @@
             <div class="out-bg" id="outBg">NFT Background</div>
           </div>
 
-          <!-- Format tabs (top-right of Output) -->
+          <!-- Format tabs -->
           <nav class="nav-tabs tight" id="stageTabs" role="tablist" aria-label="Output format">
-            <button class="nav-tab active" data-view="square"     role="tab" aria-selected="true">Square</button>
-            <button class="nav-tab"        data-view="phonesaver" role="tab" aria-selected="false">Phone</button>
-            <button class="nav-tab"        data-view="raid"       role="tab" aria-selected="false">Raid</button>
+            <button class="nav-tab active" data-view="square" role="tab" aria-selected="true">Square</button>
+            <button class="nav-tab" data-view="phonesaver" role="tab" aria-selected="false">Phone</button>
+            <button class="nav-tab" data-view="raid" role="tab" aria-selected="false">Raid</button>
           </nav>
         </div>
 
@@ -118,7 +126,7 @@
           <img id="previewImg" alt="" hidden />
         </div>
 
-        <!-- Token controls under the preview -->
+        <!-- Token controls -->
         <div class="row mt-8 token-row" id="tokenRow">
           <button id="prevBtnBelow" class="btn icon" aria-label="Previous token">←</button>
           <input id="tokenInputBelow" type="number" min="1" class="input token-input" />
@@ -130,7 +138,7 @@
           <button id="shuffleBtn" class="btn">Shuffle Token</button>
         </div>
 
-        <!-- Background navigation (← label →) -->
+        <!-- Background navigation -->
         <div class="row mt-8" id="bgNavRow">
           <button id="bgPrevBtn" class="btn icon" aria-label="Previous background">←</button>
           <span id="bgLabel" class="btn" style="pointer-events:none; text-align:center; font-weight:600;">Background</span>
@@ -150,13 +158,13 @@
         <!-- Mini history gallery -->
         <div class="history-gallery" id="historyGallery"></div>
 
-        <!-- Build status moved BELOW gallery -->
+        <!-- Build status -->
         <div id="statusBar" class="status small" aria-live="polite">Idle…</div>
       </div>
     </section>
   </main>
 
-  <!-- Footer credits + Easter egg -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <span>Powered by Rascals ✨</span>
